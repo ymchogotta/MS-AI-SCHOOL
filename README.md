@@ -1,3 +1,3 @@
 # MS AI SCHOOL
 
-learn how to make README file.
+일일 실습 파일 기록하기!
