@@ -54,3 +54,34 @@
         }
     </script>
 </body>
+
+# 객체에 이벤트 핸들러 등록
+<body>
+    <h1>hello</h1>
+    <p class="test">testing</p>
+    <p class="test">testing</p>
+    <p id="lulu">lulu</p>
+    <script>
+        let luElement = document.getElementById('lulu')
+        luElement.addEventListener('click', function(){
+            alert('Click!')
+        })
+    </script>
+</body>
+
+# 브라우저 크기가 변할 때 처리해주기
+<body>
+    <h1>hello</h1>
+    <p class="test">testing</p>
+    <p class="test">testing</p>
+    <p id="lulu">lulu</p>
+    <script>
+        window.addEventListener('resize', function(){
+            alert(window.innderWidth)
+        })
+    </script>
+</body>
+
+# 버튼 클릭하면 경고창에 hello 출력
+
+# 버튼 클릭하면 hello 추가
