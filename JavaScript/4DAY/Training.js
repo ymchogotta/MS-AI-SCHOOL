@@ -83,5 +83,44 @@
 </body>
 
 # 버튼 클릭하면 경고창에 hello 출력
+<body>
+    <button>click</button>
+    <script>
+        let buttonElement = document.getElementsByTagName('button')[0]
+        buttonElement.addEventListener('click', function(){
+            alert('hello')
+        })
+    </script>
+</body>
+
+# 버튼 클릭하면 배경색 변경
+<body>
+    <button>click</button>
+    <p>hello</p>
+    <script>
+        let buttonElement = document.getElementsByTagName('button')[0]
+        buttonElement.addEventListener('click', function(){
+            let pElement = document.getElementsByTagName('p')[0]
+            pElement.style.backgroundColor = 'red'
+        })
+    </script>
+</body>
 
 # 버튼 클릭하면 hello 추가
+<body>
+    <button>click</button>
+    <div></div>
+    <script>
+        let buttonElement = document.getElementsByTagName('button')[0]
+        buttonElement.addEventListener('click', function(){
+            let divElement = document.getElementsByTagName('div')[0]
+            divElement.innerHTML = 'hello'
+        })
+    </script>
+</body>
+
+# 버튼 클릭하면 계속 hello 추가
+
+
+
+
