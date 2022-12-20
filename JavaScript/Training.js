@@ -120,7 +120,26 @@
 </body>
 
 # 버튼 클릭하면 계속 hello 추가
+<body>
+    <button>click</button>
+    <div></div>
+    <script>
+        let buttonElement = document.getElementsByTagName('button')[0]
+        buttonElement.addEventListener('click', function(){
+            let divElement = document.getElementsByTagName('div')[0]
+            divElement.innerHTML += '<p>hello</p>'
+        })
+    </script>
+</body>
 
-
-
+# 브라우저 크기가 변경되면 사이즈 표시
+<body>
+    <div></div>
+    <script>
+        window.addEventListener('resize', function(){
+            let divElement = document.getElementsByTagName('div')[0]
+            divElement.innerHTML = window.innerWidth
+        })
+    </script>
+</body>
 
