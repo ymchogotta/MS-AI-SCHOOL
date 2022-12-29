@@ -1,1 +1,23 @@
-MS License DP-900 따기.
+단원4: 
+
+Microsoft Power Platform
+Power Virtual Agents = 채팅 만들어주는 기능
+
+Power BI를 사용할 수 있는 방법
+- Power BI Desktop
+- Power BI 서비스
+- Power BI mobile
+
+Power BI 앱의 구성요소
+- 시각화, 데이터 세트, 보고서, 대시보드, 타일
+
+
+* Docker
+- 도커 저장
+DockerJub (> Registry)
+쿠버네티스 사용
+도커 레지스트리를 애져 상에 만드는데 이를 ACR이라 함. 
+az aks create --resource-group RG79 --name labuser79aks --location eastus --attach-acr labuser79acr2 --generate-ssh-keys
+
+[쿠버네티스 알아보기 1편: 쿠버네티스와 컨테이너, 도커에 대한 기본 개념]
+https://www.samsungsds.com/kr/insights/220222_kubernetes1.html
