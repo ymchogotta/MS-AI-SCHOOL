@@ -1,1 +1,147 @@
-Learn JavaScript
+# 5day
+## index
+Jquery 란? 왜 사용하는가?
+요소 조작하기
+순회
+스타일, 애니메이션
+
+< Jquery 란 >
+- html요소들의 수정, 추가 등의 작업을 편리하게 사용할 수 있는 라이브러리
+document.getElementById('element').style.display = "none"
+=> $('#element').hide()
+
+
+< Jquery 시작하기 >
+
+< html head 안에 >
+- https://releases.jquery.com/ 에서 3.0 버전 CDN 주소 확인
+jQuery Core 3.6.3 - uncompressed(실제 개발할때 사용), minified(압축버전), slim(기능빠진버전), slim minified(기능빠진거에 압축버전)
+- script 삽입
+
+< Jquery 이용해서 경고창 띄우기 >
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" 
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> // Jquery 라이브러리 땡겨오는 스크립트
+    <script>
+        $(document).ready(function(){  // $ = jquery 심볼, document = 페이지 렌더링 , ready ~ = 렌더링 완료 준비되면 시작. 이 구문을 body의 가장 하단에 쓰면 사실 안써도됨.
+            alert("Hello World!")
+        })
+    </script>
+</body>
+
+< jquery로 요소 다루기 >
+
+< 요소 불러오기 >
+$('선택자')
+$ - jquery를 사용할 때는 $를 이용함(jqeury
+
+< 선택자 사용 실습 >
+
+< 선택자 혼합 실습(자손, 자식) >
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" 
+    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <div>
+        <p>child</p>
+        <div>
+            <section>
+                <p>grandchild</p>
+            </section>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            let $gChild = $("div p")
+            let $child = $("div > p")
+            $gChild.style.color = 'red'
+        })
+    </script>
+</body>
+
+< 요소 콘텐츠 출력하기 >
+<body>
+    <div>1</div>
+    <script>
+        $(document).ready(function(){
+            let divElements = $("div")
+            console.log(divElements.html())
+        })
+    </script>
+</body>
+
+< 요소 콘텐츠 변경하기 >
+<body>
+    <div>1</div>
+    <script>
+        $(document).ready(function(){
+            let divElements = $("div")
+            divElements.html("Hello World")
+        })
+    </script>
+</body>
+
+< 요소 삭제하기 >
+<body>
+    <div>1</div>
+    <script>
+        $(document).ready(function(){
+            let $divElements = $("div")
+            $divElements.empty()  // 요소 콘텐츠 지우기
+            $divElements.remove() // 요소 자체를 삭제하기
+        })
+    </script>
+</body>
+
+< 요소 추가하기 >
+<body>
+    <div>1</div>
+    <script>
+        $(document).ready(function(){
+            let $divElements = $("div")
+            $divElements.append('<p>Hello World</p>')
+        })
+    </script>
+</body>
+
+< 요소 생성하고 추가하기 >
+<body>
+    <div>Grandparent</div>
+    <script>
+        $(document).ready(function(){
+            let newElement = $('<div class="parent">parent</div>')
+            newElement.append('<div class="child">child</div>')
+
+            let divElements = $('div')
+            divElements.append(newElement)
+        })
+    </script>
+</body>
+
+< css 설정하기 >
+<body>
+    <div>Grandparent</div>
+    <script>
+        $(document).ready(function(){
+            let divElements = $("div")
+            divElements.css("color", "red")
+            divElements.css({
+                "background-color": "blue",
+                "font-size": "20px"
+            })
+            divElements.css("font-family", "Arial")
+        })
+    </script>
+</body>
+
+< css 값 읽어오기 >
+<body>
+    <div>Grandparent</div>
+    <script>
+        $(document).ready(function(){
+            let divElements = $("div")
+            console.log(divElements.css("color"))
+            console.log(divElements.css(["color", "font-size"]))
+        })
+    </script>
+</body>
+
