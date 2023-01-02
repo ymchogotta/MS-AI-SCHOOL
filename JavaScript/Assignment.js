@@ -276,7 +276,7 @@ console.log(result)
             let peopleArray = []
             peopleArray.push($('<h1>총회원수: ' + array.length + '<h1>'))
             for(let i=0; i < array.length; i++){
-                let personElement = $('<p>이름: ' + array[i].name + ', 나이' + array[i].age + '</p>')
+                let personElement = $('<p>이름: ' + array[i]['name'] + ', 나이' + array[i].age + '</p>')
                 peopleArray.push(personElement)
             }
             return peopleArray
