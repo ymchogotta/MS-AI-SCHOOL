@@ -170,4 +170,21 @@ $ - jquery를 사용할 때는 $를 이용함(jqeury
 </body>
 
 < 걸러내기 filter() - 함수 사용 >
+<body>
+    <div class="parent">parent
+        <p>1</p>
+        <p class="super">super</p>
+        <p>2</p>
+        <p class="super">super</p>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script>
+        $('p').css('background-color','red')
+            .filter(function(index){ // $(selector).filter(criteria,function(index)) --> both elems are optional
+                return index % 2 == 0
+            })
+            .css('border', '10px solid black')
+    </script>
+</body>
+
 
