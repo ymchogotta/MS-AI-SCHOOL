@@ -1,1 +1,176 @@
 Understanding AI Basic knowledges.
+
+< 01. Introduction to Machine Learning >
+
+클래식 머신 러닝 - 수학 - scikit-Learn
+딥 러닝 - 신경망 - (절대강자)tensorflow, keras, (성장세 갑)Pytorch
+
+컴퓨터 비전 쪽 - 하이레벨 프레임워크 
+
+다음주 keras 로 신경망 구현 돌리기
+
+머신 러닝(Machine Learning)
+- ex) 알파고 
+구글 자율주행을 한창 연구하던 시기
+알파고 - 딥마인드 인수, 완승하는게 목표였는데 실패로 돌아감.
+이세돌 9단이 이긴 한 판이 7년을 깎아먹음.
+
+"인간이 개발한 알고리즘을 컴퓨터 언어를 통해 기계에게 학습 시키는 행위"
+Machine Learning 
+ ㄴ Machine Learned
+   ㄴ By Computer Languages  ( <-- Data )
+     ㄴ To perform the algorithm  ( --> Model )
+       ㄴ Create by human OR AI
+
+Computer Science vs. Machine Learning
+
+3 + 5 "==>" 8	  3, 5 -> 8   3, 4 -> 7
+			==>  "+ Model" 
+Data Scientist : Data Modeling, Algorithm, 리서치 관점
+Data Engineer : 전체 프로세스 관리, 엔지니어링 관점
+Data Labeler : 데이터 라벨링, 미국엔 챗봇 트레이너도 있음 -> 업무영역 세분화
+
+gpu : 딥러닝할 때 사용됨.
+cpu vs. gpu
+코어 개수의 차이
+intel cpu 코어 2-40개
+nvidia gpu 코어 양으로 승부
+
+< 머신러닝의 종류 >
+1. Supervised Learning 지도 학습
+- 문제&정답을 제공 : Feature & Label
+- 예측, 추정, 분류 | regression, forecast, classification
+Classification(분류)
+사례) 고양이사진과 강아지사진 분류 - 
+Regression(회귀)
+2. Unsupervised Learning 비지도 학습
+- 문제만 제공 : Feature
+- 패턴/구조 발견 그룹화
+Anomaly (변칙검색)
+사례) fake news
+Clustering(군집)
+Raw Data -> Algorithm -> Automated Clusters -> Manual Review -> Production
+3. Reinforcement Learning 강화 학습
+- 보상(reward) 제공, 인과관계가 중요, 게임(알파고), 로봇
+
+알고리즘 사용순위
+Regression
+Decision Trees / Rules
+Clustering
+Visualization
+... 상위권 다 클래식머신러닝
+
+
+< 02. Data >
+Steps
+First - Understand the Business Domain
+Second - Understand the Business Problem
+Third - What is the Right data, Right Column and Right Algorithm
+Last - Combine Knowledge With Machine Learning
+
+Data, Algorithm, Parameter
+y = ax + b
+
+다중공선성: 두 개의 특성이 서로 설명이 어려운 상황
+
+* 타이타닉 호
+Feature - 나이, 성별 등.. 이름과 티켓넘버 제외(영황x)
+Label - 생존 여부
+
+X = Feature
+Y = Label
+
+Dataset
+>Train Set
+  >X_train
+  >Y_train
+>Test Set
+  >X_test
+  >Y_test
+
+Randon Split
+- 데이터는 정렬되어있는 경우도 있는데 그런 데이터를 잘라서 train test 데이터를 나누면
+- seed = 100
+
+< Open Data > 
+Kaggle
+
+국가통계포털
+- KOSIS는 국내, 국제, 북한의 주요 통계를 한 곳에 모아 이용자가 원하는 통계를 한 번에
+찾을 수 있도록 통계청이 제공하는 One-stop 통계 서비스다.
+- 현재 300여 개 기관이 작성하는 경제, 사회, 환경에 관한 1000여 종의 국가 승인통계를 수록하고 있으며, 
+국제금융, 경제에 관한 IMF, Worldbank, OECD 등의 최신 통계도 제공하고 있다.
+
+
+
+< 03. Orange Data Mining >
+Orange Data Mining
+: 데이터에 대한 기본 지식이 없이도 데이터 처리 및 시각화, 그리고 머신 러닝을 직접적으로
+적용해볼 수 있는 도구
+- 대학 뿐 아니라 전문가들 사이에서도 본격적으로 개발하기 전 데이터를 검증하는 용도로 활용됨.
+- Windows, MacOS, Linux등 크로스 플랫폼 지원
+- GPL 라이선스
+- https://orangedatamining.com/
+- 전체적인 과정이 시각적으로 보임
+- 최근에는 세포 생물 통계나 자연과학 데이터 분석 분야의 확장 기능들이 추가되는 등 지금도 
+활발히 개발되고 있음
+
+- 버전 3.0부터 파이썬 라이브러리를 적극적으로 활용하기 시작
+- NumPy, SciPy 및 scikit-learn 과 같은 라이브러리를 함께 사용
+- 전반적인 UI는 QT를 사용해서 개발되어 크로스플랫폼을 지원함
+
+주요 기능
+- Data:
+- Visualization
+- Evaluate
+- Unsupervised
+
+주요 알고리즘
+- Classify
+- Regression
+- Clustering
+
+[Anaconda]
+If you are using python provided by Anaconda distribution, you are almost ready to go. Add conda-forge to the list of channels you can install packages from
+
+conda config --add channels conda-forge
+and run
+
+conda install pyqt
+conda install orange3
+
+
+
+< 5, 6, 7, 8, 알고리즘 >
+회귀 분석
+- 회귀 분석(regression analysis)은 관찰된 연속형 변수들에 대해 두 변수 사이의 모형을 구한 뒤 적합도를
+측정해 내는 분석 방법
+- 활용 분야 : 시간에 따라 변화하는 데이터 혹은 영향도, 가설적 실험, 인과 관계, 그외 통계적 예측
+- 그러나 가정의 적절성이 증명되지 않은 채로 이용되어 그 결과가 오용되기도 함
+- 특히 sw의 발달로 분석이 용이해져 결과를 쉽게 얻을 수 있지만, 분석 방법의 적절성, 정보 분석의
+정확성의 판단은 여전히 연구자의 몫
+
+실습
+주제: 보스턴 집값 예측
+data: 보스턴 집값 데이터(housing)
+13개의 요소로 구성된 데이터는 총 506개의 열로 구성되어 있으며 사용하는 알고리즘에 따라 결과가 다르게 나옴
+
+
+{ feature : description
+crim : 범죄율
+zn : 집 크기
+indus : 
+chas : 강변
+nox : 오염지수
+rm
+age : 얼마나 오래됐나
+dis : 시내로부터 거리
+rad : 방사형 도로까지 접근성
+tax
+ptratio : 학생/교사 비율
+b
+lstat
+**medv**	}
+
+Axis y: MEDV
+
