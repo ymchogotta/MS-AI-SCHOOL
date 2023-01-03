@@ -1,3 +1,406 @@
+<모듈1>
+- 데이터의 정의 및 저장 방법 식별
+- 관계형 및 비관계형 데이터의 특성 식별
+- 데이터 워크로드 설명 및 차별화
+- 일괄 처리 및 스트리밍 데이터 설명 및 차별화
+
+데이터란?
+구조화, 반구조화, 비구조화 방식으로 저장된 사실, 숫자, 설명, 개체의 컬렉션이다.
+
+트랜잭션 대 분석 데이터 저장소
+OLTP - 데이터는 한번에 한 트랜잭션으로 저장된다.
+OLAP - 데이터 큐브. 데이터는 큐브에 주기적으로 로0드, 집계, 저장된다.
+
+트랜잭션 워크로드 
+트랜잭션 데이터는 조직의 활동과 관련된 상호 작용을 추적하는 정보다.
+- 원자성 : 각 트랜잭션이 완전히 성공하거나 완전히 실패하는 단일 단위로 처리된다.
+- 일관성 : 트랜잭션이 데이터베이스 내 데이터의 상태를 유효 상태 간에만 전환할 수 있다.
+- 격리 : 여러 트랜잭션을 동시에 실행해도 데이터베이스는 동일 상태로 유지된다.
+- 영속성 : 커밋된 트랜잭션은 커밋된 상태로 유지된다.
+
+분석 워크로드
+분석 워크로드는 데이터 분석 및 의사 결정에 사용된다.
+- 요약 Summary
+- 추세 Trend
+- 비즈니스 정보 Power BI (Business information)
+
+데이터 처리
+데이터 처리는 프로세스를 통해 원시 데이터를 의미 있는 정보로 전환하는 것이다.
+- 일괄 처리: 데이터 요소가 그룹으로 수집된다. 그런 다음 전체 그룹이 향후 일괄 처리로 처리된다.
+- 스트림 처리: 각 새 데이터가 도착하면 처리된다.
+* 예전에는 '일괄 처리'가 많았는데 요즘은 '스트림 처리'가 더 많음.
+
+JSON - document
+
+
+
+< _1 >
+- 데이터 작업 역할 살펴보기
+- 데이터 작업 역할에 대한 공통 작업 및 도구 살펴보기
+
+데이터의 역할
+- 데이터베이스 (서버)관리자: (제일 잘 모름). 
+	데이터 베이스 관리
+	데이터 보안 구현
+	백업
+	사용자 액세스
+	성능 모니터링
+	* DBA -> 데이터베이스 컨설턴트 : 예전에는 데이터베이스 관리자라는 직업이 있었음. 요즘은 기계가 많이 함.
+- 데이터 엔지니어
+	데이터 내용보다는 데이터 자체를 관리
+	데이터 파이프라인 및 프로세스
+	데이터 수집 스토리지
+	분석용 데이터 준비
+	분석 처리를 위한 데이터 준비
+- 데이터 분석자
+	데이터에 대한 인사이트 제공
+	시각적 개체 제공
+	분석을 위한 데이터 모델링
+	시각화 및 분석을 위해 데이터 결합
+
+공통 도구 - 데이터베이스 관리자
+Azure Data Studio
+: 온-프레미스 및 클라우드 기반 데이터 서비스 관리를 위한 그래픽 인터페이스.
+: Windows, macOS, Linux에서 실행
+SQL Server Management Studio
+: 온-프레미스 및 클라우드 기반 데이터 서비스 관리를 위한 그래픽 인터페이스
+: Windows에서 실행 ( SQL Sever Execute Plan )
+: 포괄적인 데이터베이스 관리 도구
+Azure Portal/CLI
+: Azure Data Services의 관리 프로비전용 도구
+: Azure Resource Manager 또는 명령줄 인터페이스 스크립팅을 사용하여 스크립트의 수동 및 자동화 
+
+공통 도구 - 데이터 엔지니어링
+Azure Synapse Studio
+
+SQL Server Management Studio
+
+Azure Protal/CLI
+
+공통 도구 - 데이터 분석자
+Power BI Desktop
+: 데이터 시각화 도구, 데이터 모델링 및 시각화, Azure Synapse 자산관리(SQL풀/Spark풀)
+Power BI Portal/Power BI Service
+
+Power BI 보고서 작성하기
+
+
+
+
+< _2 >
+- 관계형 데이터의 특성 살펴보기
+- 테이블, 인덱스 및 뷰 정의
+- Azure에서 관계형 데이터 워크로드 서비스 살펴보기
+
+관계형 데이터베이스 사용 사례 식별
+- IoT : 보통 비관계형으로 간주되지만, IoT 디바이스의 데이터는 구조화되고 일관적인 모습을 띌 수 있다.
+- 온라인 트랜잭션 처리 : 수많은 소규모 트랜잭션 업데이트를 진행하는 주문 시스템을 예로 들 수 있다.
+- 데이터 웨어하우징 : 여러 소스에서 대량의 데이터를 가져올 수 있으며 고성능 쿼리가 가능하도록 구조화할 수 있다.
+
+#테이블#
+- 데이터는 테이블에 저장된다.
+- 테이블은 행과 열로 구성된다.
+- 모든 행에는 동일한 수의 열이 있다.
+- 각 열은 데이터 유형으로 정의된다. - Tinyint = 8bit 정수형(0~255) ; 사람나이를 넣을 수 있는 데이터 타입
+
+#엔터티#
+: 엔터티는 실제(고객 또는 제품) 항목 또는 가상(주문) 항목을 나타낸다. 엔터티는 상호 작용을 가능하게 하는 관계로 연결된다. 고객이 제품을 주문하는 것을 에로 들 수 있다.
+
+#정규화#
+: 가령 주문할 때, 기존 데이터테이블과 주문 번호가 있는 테이블이 있으면 주문번호 테이블에 중복되는 정보들은 생략해도 된다.
+: 1차, 2차 ,, 등 여러 차례의 정규화를 거치는데 너무 많이 진행했으면 #비정규화#를 하기도 한다.
+: 데이터는 다음과 같이 정규화 된다; 스토리지 감소, 데이터 중복 방지, 데이터 품질 향상
+
+#관계#
+: 논리적으로 연결하거나 물리적으로 연결할 수 있다.
+*ERD(Entity Relationship Diagram) ; 관계형 데이터베이스
+
+#인덱스#
+: 고객정보를 찾는다고 할 때, 전체 데이터베이스에서 정보를 찾아오기에는 시간이 너무 오래 걸린다. 고객 정보의 위치를 인덱스화해서 빠르게 찾을 수 있도록 한다.
+
+#뷰#
+- 데이터는 테이블에 있다.
+- 가령 고객지원센터에서 상담원이 보는 정보는 데이터테이블의 뷰다. 뷰를 통해서 제한된 고객정보를 조회한다. 
+'''
+CREATE View CS
+SELEC id, name, phone
+FROM member
+'''
+뷰 명령어 : CREATE, ALTER, DROP
+
+
+
+
+< _3 >
+비관계형 데이터의 개념 살펴보기
+- 비관계형 데이터의 특성 살펴보기
+- 비관계형 데이터 유형 정의
+- NoSQL 및 비관계형 데이터베이스 유형 설명
+
+비관계형 데이터의 특성 살펴보기
+엔터티
+## 고객 1 ID: 1
+이름: Mark
+전화: [ 집: 02-111-1111, 회사: 02-111-1111, 휴대폰: 010-2222-2222 ]
+주소: [ 집: 서울시, 회사: 대전시]
+## 고객 2 ID: 2
+제목: Mr
+이름: Jeff
+전화: [ 집: 02-333-3333, 회사: 02-444-4444, 휴대폰: 010-5555-5555 ]
+주소: [ 집: New York, 회사: Los Angeles ]
+
+비관계형 컬렉션에는 다음을 포함할 수 있다.
+	- 필드가 다른 동일한 컬렉션 또는 컨테이너의 여러 엔터티
+	- 테이블 형식이 아닌 여러 스키마 포함
+	- 각 필드에 나타내는 이름으로 레이블을 지정하여 정의되는 경우가 많음 
+
+비관게형 데이터베이스 사용 사례 식별
+- IoT 및 텔레매틱스
+- 소매 및 마케팅
+- 게임: 주로 모바일 게임
+- 웹 및 모바일: 웹 클릭 분석 등
+
+비관계형 데이터 유형
+반구조화 데이터란? 데이터 구조는 필드별로 실제 데이터 내에 정의된다. 형식/파일 유형에는 다음이 포함된다.
+	JSON, AVRO, ORC, Parquet
+
+비구조화 데이터란?
+- 자연적으로 필드를 포함하지 않는다. (예) 비디오, 오디오, 미디어 스트림, 문서
+- 데이터 조직을 추출하고 "구조"를 분류하거나 식별하는 데 자주 사용된다.
+- Machine Learning 또는 Cognitive Services 기능과 함께 결합하여 자주 사용되며 다음과 같은 방법으로 "데이터 추출"을 수행한다.
+	Text Analytics, Cognitive API를 통한 감정 분석, Vision API
+
+NoSQL이란?
+비관계형을 설명하는 느슨한 용어
+- 키/값 저장소
+- 문서 기반
+- 열 패밀리 데이터베이스
+- 그래프 데이터베이스
+
+그래프 데이터베이스란?
+- 관계를 중심으로 엔터티 저장 - 주로 계층적 데이터 저장. 가령, 조직도나 네트워크. - Gremlin DB
+- 애플리케이션이 노드 및 에지 네트워크를 통과하는 쿼리를 수행할 수 있도록 한다.
+
+데이터 활용 과정
+[ 데이터 수집 -> 데이터 처리 -> 데이터 시각화 : ( IoTHub, EventHub ) 데이터베이스에서 즉시 사용하거나 저장하기 위해 데이터를 
+수집하고 가져오는 프로세스 -> ( ETL, ELT ) 데이터를 원시 형태로 가져와 정리하고 보다 의미 있는 형식으로 변환 -> ( 쿼리, 시각화 )
+데이터를 쿼리하여 정보와 데이터의 그래픽 표현 만들기
+
+데이터 시각화
+	보고, BI, 데이터 시각화 by Dashboard
+
+데이터 분석 살펴보기
+: 설명, 진단, 예측 가능성, 규범적, 인지적
+
+
+
+
+<모듈 2: Azure의 관계형 데이터 탐색>
+- Azure에서 관계형 데이터 서비스 살펴보기
+- Azure에서 관계형 데이터베이스 서비스 프로비전 및 배포 살펴보기
+- Azure에서 관계형 데이터 쿼리
+
+단원 1: Azure에서 관계형 데이터 서비스 살펴보기
+- Azure Data Services란 무엇인가?
+- IaaS와 PaaS 비교
+- Azure Virtual Machines의 SQL Server
+- Azure SQL DB
+- PostgreSQL, MySQL, MariaDB
+
+Azure Data Services란 무엇인가?
+SQL
+--open source--
+MySQL (가장많이사용됨)
+MariaDB	
+PostgreSQL
+
+데이터베이스 절.대.강.자. Oracle 그런데 요즘 오라클을 빼고 쓰는게 트렌드.. -> MySQL로 빠졌는데, 오라클이 MySQL dlstngka
+-> 빠져나간 사람들이 다시 만든게 MariaDB
+
+IaaS와 PaaS 비교
+* 자본지출 및 일단위 컨트롤, 관리 작업
+PaaS < IaaS < 물리적
+
+Azure의 SQL Server
+	--IaaS--
+Azure Virtual Machines의 SQL Server 
+	--PaaS--
+Azure SQL Managed Instance(PaaS이면서도 호환성 굳) / Azure SQL Database( 가장 PaaS에 충실 ) 
+
+Azure SQL Managed Instance 또는 Azure SQL Database
+Azure SQL Managed Instance
+- 단일 인스턴스: SQL 서버 노출 영역(대부분), 기본 가상 네트워크 지원, 완전 관리형 서비스
+- 인스턴스 풀: 마이그레이션을 위한 사전 프로비전 컴퓨팅 리ㅣ소스, 비용 효율적인 마이그레이션을 지원, 비교적 작은 인스턴스를 호스트하는 기능(2Vcore), 현재 공개 미리보기 상태
+Azure SQL Database
+- 단일 데이터베이스: 하이퍼스케일 스토리지(최대 100TB), 서버리스 컴퓨팅, 완전 관리형 서비스
+- 탄력적 풀: 가격 최적화를 위해 여러 데이터베이스 간의 리소스 공유, 여러 데이터베이스에 대한 간소화된 성능 관리, 완전 관리형 서비스
+
+(오픈소스 데이터베이스) PostgreSQL, MySQL, MariaDB 
+Azure Database for PostgreSQL은 PostgreSQL Community Edition 데이터베이스 엔진을 기반으로 하는 Microsoft 클라우드의 관계형 데이터베이스 서비스다.
+Azure Database for MySQL은 MySQL Community Edtion을 기반으로 하는 Azure 클라우드 내 MySQL의 PaaS 구현이다.
+Azure Database for MariaDB는 Azure에서 실행되도록 조정된 MariaDB 데이터베이스 관리 시스템 구현이다. 그것은 MariaDB Community Editon을 기반으로 한다.
+
+관계형 데이터 서비스 구성
+[ 기초 -> 네트워크 연결 -> 추가 설정 -> 태그(DB) -> 검토 및 만들기 : 
+구독, 리소스 그룹, Managed Instance,/서버이름, 데이터베이스 이름(DB), 관리자 로그인, 암호, 지역, 풀에 대한 옵트인(DB), 컴퓨팅 + 스토리지 
+-> 공개 및 비공개 액세스, VNet/방화벽 규칙, 연결 형식(MI) -> 데이터 원본(DB), 서버 데이터 정렬(MI), 데이터베이스 데이터 정렬(DB), 표준 시간대(MI), Advanced Data Security 옵트인(DB)
+->  -> 이용 약관 및 개인 정보 보호 
+
+Azure 내에서의 연결
+33분붙터 필기중단 ( [11_15] MS License (3) - 김영욱 교장선생님 (1)
+
+SQL문 유형
+- DML
+SELECT문
+INSERT문
+- DDL
+CREATE, ALTER, DROP, RENAME
+- DCL
+
+쿼리 도구
+Web Browser - Azure Portal, Azure CLI/Cloud Shell
+Windows - SQL Management Studio, SQL Server Data Tools, Azure Data Studio
+Windows, Mac, Linux - Azure Data Studio
+Terminal - SQLCMD, Azure CLI/Cloud Shell
+{
+	Azure Data Studio : A lightweight editor that can run on-demand SQL queries and view and save results as text,, JSON, or Microsoft Excel files.
+	Microsoft SQL Server Data Tools (SSDT) : A development tool for building Azure SQL Databases, ... SSAS, SSIS, SSRS
+	Mircosoft SQL Server Management Studio (SSMS)
+	Microsoft Visual Studio Code : A lightweight source code editor..
+}
+
+<모듈 3: Azure에서 비관계형 데이터 살펴보기>
+단원 1
+- Azure Table Storage 사용 사례 및 관리 이점 살펴보기
+- Azure Blob Storage 사용 사례 및 관리 이점 살펴보기
+- Azure File Storage 사용 사례 및 관리 이점 살펴보기
+- Azure Cosmos DB 사용 사례 및 관리 이점 살펴보기
+
+Azure Table Storage 살펴보기
+- key & value 로 이루어져 있다.
+- key는 일정한데 value는 일정한 형태가 없다. -> 비정형 데이터
+- NoSQL과 유사하며 애져테이블스토리지보단 노에스큐엘데이터베이스를 더 많이 씀.
+
+Azure Storage 구조 묻는 유형
+구조:
+Azure Storage Account
+	-> Blob -> Container ...
+	-> Files
+	-> Table
+	-> Queue
+
+Azure Blob Storage 살펴보기
+- 블록 Blob (가장 많이 사용됨)
+: 최대 크기 4.7TB /
+- 페이지 Blob (가상머신용 디스크로 많이 사용됨)	
+: 최대 8TB의 데이터를 저장 / 고정된 크기의 512 바이트 페이지 모음으로 구성
+- 추가 Blob(Append Blob) (로그 저장용)
+: 최대 크기는 195GB를 약간 초과 
+- if 7년동안 회사정보 저장. 스토리지 비용은 최소화해야함. -> Archive (오랫동안 최소한의 비용)
+
+Azure File Storage 살펴보기
+Azure File Storage는 클라우드에서 파일 공유를 만들어 인터넷이 연결된 곳이라면 어디에서든 파일공유에 액세스할 수 있도록 한다.
+- 파일 공유에 서버 메시지 블록 3.0(SMB 3.0) 사용
+- 단일 스토리지 계정에 최대 100TB의 데이터 공유
+- 완전 관리형 서비스 - 데이터가 로컬로 복제되며 미사용 시 암호화
+
+Azure Cosmos DB란?
+Azure Cosmos DB는 다중 모델 NoSQL DBMS(데이터베이스 관리 시스템)이다.
+- Cosmos DB는 분할된 문서 집합으로 데이터를 관리한다.
+- 실시간 액세스로 읽기 및 쓰기 대기 시간이 짧다.
+- Azure 스케일링과 스토리지 기능을 활용한다.
+
+
+단원2: Azure에서 비관계형 데이터 서비스 프로비전 및 배포 살펴보기
+- 비관계형 데이터 서비스 프로비전
+- 비관계형 데이터 서비스 구성
+- 기본 연결 문제 살펴보기
+- 데이터 보안 구성 요소 살펴보기
+
+Azure Cosmos DB 
+- Partition Keys 는 쿼리를 최적화하는데 사용한다. 
+- Partition key는 중복되지 않는다.
+- two levels setting for an Azure Cosmos DB account = database, container 
+-> container level에서 할 수 있는 setting : throughput (처리량), partition key (빠른 검색)
+- APIs 
+	Cassandra API
+	Gremlin API : Graph data
+	MongoDB API : JSON documents
+	Table API : key/value data
+
+Azure CosmosDB 프로비저닝
+
+Azure CosmosDB의 일관성
+
+CosmosDB 만들어보기
+
+(실습)
+*용량모드
+프로비전된 처리량 vs. 서버리스
+*컨테이너 추가
+- Database Max RU : auto / 최대 지정
+*다중지역복제
+- 읽기, 쓰기 및 가용성 영역
+
+
+모듈 4: 최신 데이터 웨어하우스 분석 살펴보기
+- 최신 데이터 웨어하우스의 구성 요소 검토
+- Azure에서 데이터 수집 살펴보기
+- Azure에서 데이터 스토리지 및 처리 살펴보기
+- Power Bi로 빌드 시작
+
+단원1
+- 데이터 웨어하우징 개념 살펴보기
+- 최신 데이터 웨어하우징을 위한 Azure 데이터 서비스 살펴보기
+- 최신 데이터 웨어하우징 아키텍쳐 및 워크로드 살펴보기
+- Azure Portal에서 Azure 데이터 서비스 살펴보기
+
+최신 데이터 웨어하우스용 Azure 서비스
+- Azure Data Factory
+- Azure Data Lake
+- Azure Databricks
+- Azure HDInsight
+- Azure Synapse Analytics
+
+Azure Data Factory란?
+Azure Data Factory는 데이터 통합 서비스로 설명할 수 있다.
+- 여러 데이터 원본에서 데이터를 검색하여 변환한다.
+- 노이즈를 필터링하여 관심 데이터만 유지한다.
+- 작업은 파이프라인 작업으로 정의되며, 데이터가 수신되면 연속적으로 실행된다.
+
+Azure Data Lake Storage란?
+Azure Data Lake Storage는 최신 데이터 웨어하우스의 리포지토리다.
+- 파일 액세스 효율성 개선을 위해 데이터를 디렉터리로 구성한다.
+- support role-baed access control (RBAC) at the file and folder level
+- POSIX 및 RBAC 권한을 지원
+*POSIX - UNIX, Linux 
+- Hadoop 분산 파일 시스템과 호환
+*Hadoop - 빅데이터를 다룰 때 사용
+
+Azure Databricks란?
+Azure Databricks는 빅 데이터 처리 및 스트리밍 기능을 제공하는 Apache Spark 기반 플랫폼이다.
+- Apache Spark 기반 분석 솔루션의 프로비전 및 공동작업을 간소화한다.
+- Azure의 보안 기능을 활용한다.
+- 다양한 Azure 데이터 플랫폼 서비스 및 Power BI와 통합된다.
+
+- SQL 구문을 사용하며, 작업영역이 필요하다.
+
+Azure Analysis Services란?
+Azure Analysis Sevices는 OLAP(온라인 분석 처리) 쿼리를 지원하기 위해 테이블 형식 모델을 빌드한다. 이 서비스는 Azure SQL Database,
+Azure Synapse Analytics, Azure Data Lake Store, Azure cosmos DB 등의 여러 원본에서 제공되는 데이터를 결합할 수 있다.
+- 데이터 원본(온-프레미스 네트워크) -> 수집(Storage Blob) -> 데이터 스토리지(Azure Synapse) -> 분석(분석 서비스) -> _인증_(Azure Acitve Directory) ->시각화(Power BI)
+
+Azure HDInsight란?
+Azure HDInsight는 Azure 환경의 한 플랫폼에서 오픈 소스 라이브러리 사용을 지원하는 빅 데이터 처리 서비스다.
+
+Power BI란?
+
+
+application use -> OLAP, OLTP
+data processing -> stream, batch
+
+
+
 단원4: 
 
 Microsoft Power Platform
